@@ -12,12 +12,7 @@ cd ~/projects/pet-ads-service
 pwd                                   # [скрин] путь к рабочей папке
 
 # 3. Файл с несколькими строками
-nano notes.txt
-# В редакторе написать, например:
-#   Pet Ads Service — сервис объявлений о животных
-#   Сущность: Animal (name, type, breed, age, price)
-#   Следующий шаг: API в Docker-контейнере
-# Сохранить: Ctrl+O, Enter. Выйти: Ctrl+X
+echo "Pet Ads Service - pet adoption ads" > notes.txt
 cat notes.txt
 
 # 4. README проекта
