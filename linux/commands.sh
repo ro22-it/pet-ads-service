@@ -13,11 +13,13 @@ pwd                                   # [скрин] путь к рабочей 
 
 # 3. Файл с несколькими строками
 echo "Pet Ads Service - pet adoption ads" > notes.txt
+echo "Entity: Animal (name, type, breed, age, price)" >> notes.txt
+echo "Next step: API in Docker container" >> notes.txt
 cat notes.txt
 
 # 4. README проекта
 echo "# Pet Ads Service" > README.md
-echo "Учебный проект: сервис объявлений о животных" >> README.md
+echo "Study project: pet adoption ads service" >> README.md
 cat README.md
 
 # 5. Копия файла и переименование копии
