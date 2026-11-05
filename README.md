@@ -12,7 +12,9 @@
 - ветки: `main`, `feature/crud-api`, `feature/filters`, `docs/readme-status`;
 - слияния `feature/crud-api` и `feature/filters` в `main` без конфликтов;
 - слияние `docs/readme-status` вызвало конфликт — описание в [git-conflict.md](git-conflict.md);
-- граф веток — [git-network.png](git-network.png).
+- граф веток в GitHub Network — [git-network.png](git-network.png)
+  (онлайн: https://github.com/ro22-it/pet-ads-service/network),
+  он же в терминале — [git-log-graph.png](git-log-graph.png).
 
 ## Структура репозитория
 | Путь | Контрольная точка |
