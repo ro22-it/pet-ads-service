@@ -1,0 +1,8 @@
+$ docker logs pet-ads-api
+21:34:56 Pet Ads API started on port 8080
+21:34:57 GET /health
+21:34:57 GET /health
+21:34:57 GET /animals
+21:34:57 GET /animals?type=cat
+21:34:57 GET /animals/2
+21:34:57 GET /animals/99

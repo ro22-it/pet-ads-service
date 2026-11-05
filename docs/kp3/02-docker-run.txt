@@ -1,0 +1,2 @@
+$ docker run -d --name pet-ads-api -p 8080:8080 pet-ads-api
+09ff0a113a99e9af281bf6c346a270fedd18fffbea1a7f5d053b0653d18e7a09

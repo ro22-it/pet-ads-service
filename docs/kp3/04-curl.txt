@@ -1,0 +1,32 @@
+$ curl -i http://localhost:8080/health
+HTTP/1.1 200 OK
+Content-type: application/json; charset=utf-8
+Content-length: 15
+
+{"status":"UP"}
+
+
+$ curl -i http://localhost:8080/animals
+HTTP/1.1 200 OK
+Content-type: application/json; charset=utf-8
+Content-length: 371
+
+[{"id":1,"name":"Барсик","type":"cat","breed":"Британская","age":1,"price":0},{"id":2,"name":"Рекс","type":"dog","breed":"Бульдог","age":4,"price":10000},{"id":3,"name":"Кеша","type":"bird","breed":"Волнистый попугай","age":1,"price":3000},{"id":4,"name":"Граф","type":"cat","breed":"Мейн-кун","age":2,"price":0}]
+
+
+$ curl -i http://localhost:8080/animals?type=cat
+HTTP/1.1 200 OK
+Content-type: application/json; charset=utf-8
+Content-length: 178
+
+[{"id":1,"name":"Барсик","type":"cat","breed":"Британская","age":1,"price":0},{"id":4,"name":"Граф","type":"cat","breed":"Мейн-кун","age":2,"price":0}]
+
+
+$ curl -i http://localhost:8080/animals/2
+HTTP/1.1 200 OK
+Content-type: application/json; charset=utf-8
+Content-length: 86
+
+{"id":2,"name":"Рекс","type":"dog","breed":"Бульдог","age":4,"price":10000}
+
+
