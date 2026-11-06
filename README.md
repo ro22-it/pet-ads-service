@@ -6,9 +6,9 @@
 Пользователь может посмотреть список объявлений, добавить своё и снять его,
 когда животное нашло дом.
 
-Статус: CRUD API с PostgreSQL запускается через Docker Compose (КП 4), следующий шаг — архитектура (C4).
+Статус: CRUD API с PostgreSQL запускается через Docker Compose (КТ 4), следующий шаг — архитектура (C4).
 
-## Запуск (КП 4 — Compose)
+## Запуск (КТ 4 — Compose)
 ```bash
 docker compose up -d --build
 docker compose ps
@@ -50,7 +50,7 @@ docker compose down
 Результаты проверки (скриншоты и выводы `compose ps`, `curl`, `compose logs`, проверка сохранности данных) —
 в [docs/kp4](docs/kp4).
 
-## Работа с Git (КП 1)
+## Работа с Git (КТ 1)
 - ветки: `main`, `feature/crud-api`, `feature/filters`, `docs/readme-status`;
 - слияния `feature/crud-api` и `feature/filters` в `main` без конфликтов;
 - слияние `docs/readme-status` вызвало конфликт — описание в [git-conflict.md](git-conflict.md);
@@ -61,7 +61,7 @@ docker compose down
 ## Структура репозитория
 | Путь | Контрольная точка |
 |------|-------------------|
-| `README.md`, `project-notes.md`, `api-plan.md`, `git-conflict.md`, `git-network.png` | КП 1 — Git |
-| `linux/` | КП 2 — Linux (отчёт и команды) |
-| `api/` | КП 3 — API в Docker-контейнере |
-| `docker-compose.yml`, `docs/kp4/` | КП 4 — Compose: CRUD API + PostgreSQL |
+| `README.md`, `project-notes.md`, `api-plan.md`, `git-conflict.md`, `git-network.png` | КТ 1 — Git |
+| `linux/` | КТ 2 — Linux (отчёт и команды) |
+| `api/` | КТ 3 — API в Docker-контейнере |
+| `docker-compose.yml`, `docs/kp4/` | КТ 4 — Compose: CRUD API + PostgreSQL |

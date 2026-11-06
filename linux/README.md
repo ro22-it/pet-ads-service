@@ -1,4 +1,4 @@
-# КП Linux — как выполнить
+# КТ Linux — как выполнить
 
 1. Скачать и установить Oracle VirtualBox: https://www.virtualbox.org
    (на Mac с Apple Silicon — версия для «macOS / Apple Silicon hosts»).
