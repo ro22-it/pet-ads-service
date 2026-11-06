@@ -1,0 +1,6 @@
+$ docker compose ps
+NAME          IMAGE                 COMMAND                  SERVICE   CREATED          STATUS                    PORTS
+pet-ads-api   pet-ads-service-api   "/__cacert_entrypoin…"   api       13 seconds ago   Up 9 seconds              0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp
+pet-ads-db    postgres:16           "docker-entrypoint.s…"   db        13 seconds ago   Up 12 seconds (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp
+
+

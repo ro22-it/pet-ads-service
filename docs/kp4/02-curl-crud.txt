@@ -1,0 +1,32 @@
+$ curl -s http://localhost:8080/health
+{"status":"UP"}
+
+$ curl -s http://localhost:8080/animals
+[{"id":1,"name":"Барсик","type":"cat","breed":"Британская","age":1,"price":0},{"id":2,"name":"Рекс","type":"dog","breed":"Бульдог","age":4,"price":10000},{"id":3,"name":"Кеша","type":"bird","breed":"Волнистый попугай","age":1,"price":3000},{"id":4,"name":"Граф","type":"cat","breed":"Мейн-кун","age":2,"price":0}]
+
+$ curl -s -X POST http://localhost:8080/animals -H "Content-Type: application/json" -d '{"name":"Мурка","type":"cat","breed":"Сиамская","age":3,"price":0}'
+{"id":5,"name":"Мурка","type":"cat","breed":"Сиамская","age":3,"price":0}
+
+$ curl -s http://localhost:8080/animals/5
+{"id":5,"name":"Мурка","type":"cat","breed":"Сиамская","age":3,"price":0}
+
+$ curl -s -X PUT http://localhost:8080/animals/5 -H "Content-Type: application/json" -d '{"name":"Мурка","type":"cat","breed":"Сиамская","age":3,"price":1500}'
+{"id":5,"name":"Мурка","type":"cat","breed":"Сиамская","age":3,"price":1500}
+
+$ curl -s "http://localhost:8080/animals?type=cat"
+[{"id":1,"name":"Барсик","type":"cat","breed":"Британская","age":1,"price":0},{"id":4,"name":"Граф","type":"cat","breed":"Мейн-кун","age":2,"price":0},{"id":5,"name":"Мурка","type":"cat","breed":"Сиамская","age":3,"price":1500}]
+
+$ curl -s -X DELETE http://localhost:8080/animals/2
+{"deleted":2}
+
+$ curl -s -i http://localhost:8080/animals/2 | head -1
+HTTP/1.1 404 Not Found
+
+
+$ curl -s -i -X POST http://localhost:8080/animals -d '{"name":"Без типа"}' | sed -n "1p;\$p"
+HTTP/1.1 400 Bad Request
+{"error":"Fields name and type are required"}
+
+$ curl -s http://localhost:8080/animals
+[{"id":1,"name":"Барсик","type":"cat","breed":"Британская","age":1,"price":0},{"id":3,"name":"Кеша","type":"bird","breed":"Волнистый попугай","age":1,"price":3000},{"id":4,"name":"Граф","type":"cat","breed":"Мейн-кун","age":2,"price":0},{"id":5,"name":"Мурка","type":"cat","breed":"Сиамская","age":3,"price":1500}]
+
