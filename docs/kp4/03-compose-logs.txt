@@ -1,0 +1,71 @@
+$ docker compose logs --no-color
+pet-ads-api  | 21:43:23 Connected to PostgreSQL
+pet-ads-api  | 21:43:23 Pet Ads API started on port 8080
+pet-ads-api  | 21:43:32 GET /health
+pet-ads-api  | 21:43:32 GET /animals
+pet-ads-api  | 21:43:32 POST /animals
+pet-ads-api  | 21:43:32 GET /animals/5
+pet-ads-api  | 21:43:32 PUT /animals/5
+pet-ads-api  | 21:43:32 GET /animals?type=cat
+pet-ads-api  | 21:43:32 DELETE /animals/2
+pet-ads-api  | 21:43:32 GET /animals/2
+pet-ads-api  | 21:43:32 POST /animals
+pet-ads-api  | 21:43:32 GET /animals
+pet-ads-db   | The files belonging to this database system will be owned by user "postgres".
+pet-ads-db   | This user must also own the server process.
+pet-ads-db   | 
+pet-ads-db   | The database cluster will be initialized with locale "en_US.utf8".
+pet-ads-db   | The default database encoding has accordingly been set to "UTF8".
+pet-ads-db   | The default text search configuration will be set to "english".
+pet-ads-db   | 
+pet-ads-db   | Data page checksums are disabled.
+pet-ads-db   | 
+pet-ads-db   | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+pet-ads-db   | creating subdirectories ... ok
+pet-ads-db   | selecting dynamic shared memory implementation ... posix
+pet-ads-db   | selecting default max_connections ... 100
+pet-ads-db   | selecting default shared_buffers ... 128MB
+pet-ads-db   | selecting default time zone ... Etc/UTC
+pet-ads-db   | creating configuration files ... ok
+pet-ads-db   | running bootstrap script ... ok
+pet-ads-db   | performing post-bootstrap initialization ... ok
+pet-ads-db   | syncing data to disk ... ok
+pet-ads-db   | 
+pet-ads-db   | 
+pet-ads-db   | Success. You can now start the database server using:
+pet-ads-db   | 
+pet-ads-db   |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+pet-ads-db   | 
+pet-ads-db   | initdb: warning: enabling "trust" authentication for local connections
+pet-ads-db   | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+pet-ads-db   | waiting for server to start....2026-11-06 21:43:19.931 UTC [47] LOG:  starting PostgreSQL 16.15 (Debian 16.15-1.pgdg13+2) on aarch64-unknown-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+pet-ads-db   | 2026-11-06 21:43:19.932 UTC [47] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+pet-ads-db   | 2026-11-06 21:43:19.934 UTC [50] LOG:  database system was shut down at 2026-11-06 21:43:19 UTC
+pet-ads-db   | 2026-11-06 21:43:19.935 UTC [47] LOG:  database system is ready to accept connections
+pet-ads-db   |  done
+pet-ads-db   | server started
+pet-ads-db   | CREATE DATABASE
+pet-ads-db   | 
+pet-ads-db   | 
+pet-ads-db   | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+pet-ads-db   | 
+pet-ads-db   | waiting for server to shut down...2026-11-06 21:43:20.074 UTC [47] LOG:  received fast shutdown request
+pet-ads-db   | .2026-11-06 21:43:20.075 UTC [47] LOG:  aborting any active transactions
+pet-ads-db   | 2026-11-06 21:43:20.076 UTC [47] LOG:  background worker "logical replication launcher" (PID 53) exited with exit code 1
+pet-ads-db   | 2026-11-06 21:43:20.076 UTC [48] LOG:  shutting down
+pet-ads-db   | 2026-11-06 21:43:20.077 UTC [48] LOG:  checkpoint starting: shutdown immediate
+pet-ads-db   | 2026-11-06 21:43:20.092 UTC [48] LOG:  checkpoint complete: wrote 926 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.004 s, sync=0.010 s, total=0.016 s; sync files=301, longest=0.004 s, average=0.001 s; distance=4273 kB, estimate=4273 kB; lsn=0/191F098, redo lsn=0/191F098
+pet-ads-db   | 2026-11-06 21:43:20.093 UTC [47] LOG:  database system is shut down
+pet-ads-db   |  done
+pet-ads-db   | server stopped
+pet-ads-db   | 
+pet-ads-db   | PostgreSQL init process complete; ready for start up.
+pet-ads-db   | 
+pet-ads-db   | 2026-11-06 21:43:20.186 UTC [1] LOG:  starting PostgreSQL 16.15 (Debian 16.15-1.pgdg13+2) on aarch64-unknown-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+pet-ads-db   | 2026-11-06 21:43:20.187 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+pet-ads-db   | 2026-11-06 21:43:20.187 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+pet-ads-db   | 2026-11-06 21:43:20.189 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+pet-ads-db   | 2026-11-06 21:43:20.191 UTC [63] LOG:  database system was shut down at 2026-11-06 21:43:20 UTC
+pet-ads-db   | 2026-11-06 21:43:20.193 UTC [1] LOG:  database system is ready to accept connections
+
+

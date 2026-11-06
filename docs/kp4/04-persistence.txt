@@ -1,0 +1,57 @@
+$ docker compose down 2>&1
+ Container pet-ads-api Stopping 
+ Container pet-ads-api Stopped 
+ Container pet-ads-api Removing 
+ Container pet-ads-api Removed 
+ Container pet-ads-db Stopping 
+ Container pet-ads-db Stopped 
+ Container pet-ads-db Removing 
+ Container pet-ads-db Removed 
+ Network pet-ads-service_default Removing 
+ Network pet-ads-service_default Removed 
+
+
+$ docker volume ls | grep db_data
+local     pet-ads-service_db_data
+
+
+$ docker compose up -d 2>&1
+ Network pet-ads-service_default Creating 
+ Network pet-ads-service_default Creating 
+ Network pet-ads-service_default Created 
+ Network pet-ads-service_default Created 
+ Container pet-ads-db Creating 
+ Container pet-ads-db Created 
+ Container pet-ads-api Creating 
+ Container pet-ads-api Created 
+ Container pet-ads-db Starting 
+ Container pet-ads-db Started 
+ Container pet-ads-db Waiting 
+ Container pet-ads-db Healthy 
+ Container pet-ads-api Starting 
+ Container pet-ads-api Started 
+
+
+$ docker compose ps
+NAME          IMAGE                 COMMAND                  SERVICE   CREATED         STATUS                   PORTS
+pet-ads-api   pet-ads-service-api   "/__cacert_entrypoin…"   api       7 seconds ago   Up 3 seconds             0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp
+pet-ads-db    postgres:16           "docker-entrypoint.s…"   db        7 seconds ago   Up 6 seconds (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp
+
+
+$ curl -s http://localhost:8080/animals/5
+{"id":5,"name":"Мурка","type":"cat","breed":"Сиамская","age":3,"price":1500}
+
+$ curl -s http://localhost:8080/animals
+[{"id":1,"name":"Барсик","type":"cat","breed":"Британская","age":1,"price":0},{"id":3,"name":"Кеша","type":"bird","breed":"Волнистый попугай","age":1,"price":3000},{"id":4,"name":"Граф","type":"cat","breed":"Мейн-кун","age":2,"price":0},{"id":5,"name":"Мурка","type":"cat","breed":"Сиамская","age":3,"price":1500}]
+
+$ docker compose exec db psql -U postgres -d app -c "SELECT * FROM animals ORDER BY id;"
+ id |  name  | type |       breed       | age | price 
+----+--------+------+-------------------+-----+-------
+  1 | Барсик | cat  | Британская        |   1 |     0
+  3 | Кеша   | bird | Волнистый попугай |   1 |  3000
+  4 | Граф   | cat  | Мейн-кун          |   2 |     0
+  5 | Мурка  | cat  | Сиамская          |   3 |  1500
+(4 rows)
+
+
+

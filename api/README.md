@@ -1,7 +1,8 @@
-# Pet Ads API (КП «Контейнер»)
+# Pet Ads API
 
-Простое API сервиса объявлений о животных на Java 21 без внешних библиотек
-(встроенный `com.sun.net.httpserver`). Данные пока хранятся в памяти.
+API сервиса объявлений о животных на Java 21 (встроенный `com.sun.net.httpserver`).
+Начиная с КП «Compose» данные хранятся в PostgreSQL. Из внешних библиотек используется
+только JDBC-драйвер PostgreSQL, его скачивает Dockerfile при сборке.
 
 ## Endpoints
 | Метод | Путь | Описание |
@@ -10,40 +11,40 @@
 | GET | `/animals` | список объявлений |
 | GET | `/animals?type=cat` | объявления одного вида |
 | GET | `/animals/{id}` | одно объявление (404, если нет) |
+| POST | `/animals` | создать объявление → 201 |
+| PUT | `/animals/{id}` | изменить объявление (404, если нет) |
+| DELETE | `/animals/{id}` | удалить объявление (404, если нет) |
 
-## Запуск без Docker
-```bash
-cd api
-mkdir -p out && javac -encoding UTF-8 -d out $(find src -name "*.java")
-java -cp out ru.petads.App
-```
+Тело `POST`/`PUT` — JSON: `{"name":"Мурка","type":"cat","breed":"Сиамская","age":3,"price":0}`.
+Поля `name` и `type` обязательны, иначе 400. `price = 0` — отдаю даром.
 
-## Сборка и запуск в Docker
-```bash
-cd api
-docker build -t pet-ads-api .
-docker run -d --name pet-ads-api -p 8080:8080 pet-ads-api
-```
+## Настройки (переменные окружения)
+| Переменная | По умолчанию |
+|------------|--------------|
+| `PORT` | `8080` |
+| `DB_URL` | `jdbc:postgresql://localhost:5432/app` |
+| `DB_USER` | `postgres` |
+| `DB_PASSWORD` | `1234` |
 
-## Проверка
-```bash
-docker ps                                   # контейнер pet-ads-api в статусе Up
-curl http://localhost:8080/health           # {"status":"UP"}
-curl http://localhost:8080/animals          # список объявлений
-curl http://localhost:8080/animals/2        # одно объявление
-docker logs pet-ads-api                     # строка запуска и все запросы
-```
+При старте API создаёт таблицу `animals` и 4 стартовых объявления, если таблица пустая.
+Если база ещё не готова, API делает до 10 попыток подключения с паузой 2 секунды.
+
+## Запуск
+Вместе с базой — из корня репозитория через `docker compose up -d --build`
+(подробности в [../README.md](../README.md)).
 
 ## Dockerfile
 - `FROM eclipse-temurin:21-jdk AS build` — этап сборки с полным JDK;
-- `RUN javac ...` — компиляция исходников внутри контейнера;
+- `ADD --checksum=sha256:... postgresql-42.7.14.jar` — JDBC-драйвер с Maven Central,
+  контрольная сумма гарантирует, что файл не подменён;
+- `RUN javac -cp lib/postgresql.jar ...` — компиляция исходников внутри контейнера;
 - `FROM eclipse-temurin:21-jre` — финальный образ только с JRE, он меньше;
-- `COPY --from=build` — переносим скомпилированные классы из этапа сборки;
+- `COPY --from=build` — переносим скомпилированные классы и драйвер из этапа сборки;
 - `EXPOSE 8080` — порт приложения;
-- `CMD ["java", ...]` — команда запуска API.
+- `CMD ["java", "-cp", "classes:lib/postgresql.jar", ...]` — команда запуска API.
 
-Флаг `-p 8080:8080` пробрасывает порт контейнера на компьютер, поэтому API доступно
-снаружи. Сервер слушает `0.0.0.0`, иначе запросы извне контейнера не дошли бы.
+Сервер слушает `0.0.0.0`, иначе запросы извне контейнера не дошли бы.
 
 ## Результаты проверки
-Скриншоты и выводы команд лежат в [../docs/kp3](../docs/kp3).
+- КП «Контейнер» — [../docs/kp3](../docs/kp3);
+- КП «Compose» — [../docs/kp4](../docs/kp4).
