@@ -48,7 +48,7 @@ docker compose down
 ```
 
 Результаты проверки (скриншоты и выводы `compose ps`, `curl`, `compose logs`, проверка сохранности данных) —
-в [docs/kp4](docs/kp4).
+в [docs/kt4](docs/kt4).
 
 ## Работа с Git (КТ 1)
 - ветки: `main`, `feature/crud-api`, `feature/filters`, `docs/readme-status`;
@@ -64,4 +64,4 @@ docker compose down
 | `README.md`, `project-notes.md`, `api-plan.md`, `git-conflict.md`, `git-network.png` | КТ 1 — Git |
 | `linux/` | КТ 2 — Linux (отчёт и команды) |
 | `api/` | КТ 3 — API в Docker-контейнере |
-| `docker-compose.yml`, `docs/kp4/` | КТ 4 — Compose: CRUD API + PostgreSQL |
+| `docker-compose.yml`, `docs/kt4/` | КТ 4 — Compose: CRUD API + PostgreSQL |
